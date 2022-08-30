@@ -1,18 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react'
 import ThemeContext from '../context/ThemeContext'
 
-const List = ({ content, id, updateTaskDone, handleDeleteTask }) => {
-  const [taskDone, setTaskDone] = useState(false)
+const List = ({ content, id, done, updateTaskDone, handleDeleteTask }) => {
+  const [taskDone, setTaskDone] = useState(done)
   const { DarkTheme } = useContext(ThemeContext)
   useEffect(() => {
     updateTaskDone(id, taskDone)
   }, [taskDone])
 
   return (
-    <div className={DarkTheme ? 'w-full flex rounded-lg items-center justify-between max-w-85 m-auto bg-container-task-dark' : 'w-full flex rounded-lg items-center justify-between max-w-85 m-auto bg-container-task'}>
-      <button onClick={() => setTaskDone(!taskDone)} type='checkbox' name={`task-${id}`} id={id} className={`${taskDone ? 'check w-6 h-6 ml-4 mr-4 rounded-full border-gray-200 border-2 block' : 'w-6 h-6 ml-4 mr-4 rounded-full border-gray-200 border-2 block'}`} />
-      <p className={taskDone ? 'line-through pt-3 pb-3  w-3/4 bg-transparent text-gray-400' : 'pt-3 pb-3  w-5/6 bg-transparent'}>{content}</p>
-      <span onClick={el => handleDeleteTask(id)} className='bg-deleteTask h w-6 h-6 bg-no-repeat mr-4' />
+    <div className={`${DarkTheme ? 'border-gray-600' : 'border-gray-200'} w-full flex py-3 items-center justify-between  m-auto bg-transparent border-b`}>
+      <button onClick={() => setTaskDone(!taskDone)} type='checkbox' name={`task-${id}`} id={id} className={`${taskDone && 'check'} ${DarkTheme ? 'border-gray-600' : ''} relative w-6 h-6 ml-4 mr-4 rounded-full border block}`} />
+      <p className={`${taskDone && 'line-through'} ${DarkTheme ? 'text-text-dark' : 'text-text-light'}  w-3/4 bg-transparent`}>{content}</p>
+      <span onClick={() => handleDeleteTask(id)} className='bg-deleteTask bg-center h w-6 h-6 bg-no-repeat mr-4' />
     </div>
   )
 }

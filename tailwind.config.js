@@ -14,7 +14,8 @@ module.exports = {
     extend: {
       height: {
         '20vh': '20vh',
-        '80vh': '80vh'
+        '80vh': '80vh',
+        24: '24rem'
       },
       width: {
         '90%': '90%'
@@ -28,11 +29,17 @@ module.exports = {
       screens: {
         md: '375px'
       },
+      margin: {
+        '6rem': '6rem'
+      },
       colors: {
         'footer-color': '#F8F8FA',
         'container-task': '#FFFFFF',
         'container-task-dark': '#25273C',
-        'footer-background-dark': '#171723'
+        'footer-background-dark': '#171723',
+        'text-light': '#5D5E6F',
+        'text-dark': '#CACDE8',
+        'border-night': '#E4E5F1'
       }
     }
 

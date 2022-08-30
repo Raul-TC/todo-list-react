@@ -1,36 +1,25 @@
 import { createContext, useEffect, useState } from 'react'
 
-import moon from '../assets/icon-moon.svg'
-import sun from '../assets/icon-sun.svg'
-
 const ThemeContext = createContext()
 
 const ThemeProvider = ({ children }) => {
-  const [DarkTheme, setDarkTheme] = useState(true)
+  const [DarkTheme, setDarkTheme] = useState(false)
 
   useEffect(() => {
-    if (DarkTheme) {
-      localStorage.setItem('theme', 'dark')
+    if (localStorage.getItem('theme') === 'true') {
       setDarkTheme(true)
-      document.body.classList.add('classDark')
-    }
-
-    if (localStorage.getItem('theme') === 'dark') {
-      setDarkTheme(true)
-      document.body.classList.add('classDark')
     } else {
       setDarkTheme(false)
-      document.body.classList.remove('classDark')
     }
-  }, [DarkTheme])
+  }, [])
 
   const handleTheme = () => {
     if (DarkTheme) {
-      localStorage.setItem('theme', 'light')
       setDarkTheme(false)
+      localStorage.setItem('theme', false)
     } else {
-      localStorage.setItem('theme', 'dark')
       setDarkTheme(true)
+      localStorage.setItem('theme', true)
     }
   }
   const data = { DarkTheme, handleTheme }
