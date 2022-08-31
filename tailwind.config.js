@@ -27,7 +27,9 @@ module.exports = {
         '8px': '10px'
       },
       screens: {
-        sm: '1024px'
+        sch: '320px',
+        sm: '1024px',
+        md: '768px'
       },
       margin: {
         '6rem': '6rem'

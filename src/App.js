@@ -2,7 +2,8 @@ import { useContext, useEffect, useState } from 'react'
 import ThemeContext from './context/ThemeContext'
 import CreateTask from './components/CreateTask'
 import Header from './components/Header'
-import List from './components/List'
+import ContainerTask from './components/ContainerTask'
+import Modal from './components/Modal'
 // import "./App.css";
 function App () {
   const localComments = JSON.parse(localStorage.getItem('tasks'))
@@ -10,7 +11,8 @@ function App () {
   const [tasksDone, setTasksDone] = useState([])
   const [pendingTask, setPendingTask] = useState([])
   const [current, setcurrent] = useState('all')
-
+  const { DarkTheme } = useContext(ThemeContext)
+  const [modal, setModal] = useState(false)
   localStorage.setItem('tasks', JSON.stringify(task))
 
   const handleAddTask = data => {
@@ -43,7 +45,10 @@ function App () {
     setTasksDone(done)
   }, [task])
 
-  const { DarkTheme } = useContext(ThemeContext)
+  const handleDeleteAll = () => {
+    seTtask(task.filter(el => el.done !== true))
+    setModal(false)
+  }
 
   const getFilter = () => {
     if (current === 'all' || current === '') {
@@ -61,34 +66,17 @@ function App () {
 
   const filteredData = getFilter()
 
-  console.info(filteredData)
   return (
     <>
-      <header className={`${DarkTheme ? 'bg-dark-mobile md:bg-dark-desktop' : 'bg-light-mobile md:bg-light-desktop'} relative z-10 h-48 lg:h-24 bg-center bg-no-repeat bg-cover`} />
-      <div className='absolute w-full top-8 left-0 right-0 z-10 m-auto flex flex-col items-center justify-between lg:top-[6rem]'>
+      <header className={`${DarkTheme ? 'bg-dark-mobile md:bg-dark-desktop' : 'bg-light-mobile md:bg-light-desktop'} relative z-10 h-48  md:h-[20rem] bg-center bg-no-repeat bg-cover`} />
+      <div className='absolute w-full top-8 left-0 right-0 z-40 m-auto flex flex-col items-center justify-between  md:top-[4.5rem]'>
         <Header />
         <CreateTask handleAddTask={handleAddTask} />
       </div>
-      <main className='absolute z-30 w-full -mt-6 mb-4 flex items-center flex-col h-auto m-auto '>
-        <div className={`${DarkTheme ? 'bg-container-task-dark' : 'bg-container-task'} max-w-85 w-full rounded-md h-auto `}>
-
-          {task.length > 0 ? filteredData.map(el => <List key={el.id} content={el.content} id={el.id} done={el.done} updateTaskDone={updateTaskDone} handleDeleteTask={handleDeleteTask} />) : <p className={`${DarkTheme ? 'text-text-dark' : 'text-text-light'} text-center my-4`}>No hay tareas</p>}
-          <div className={`${DarkTheme ? 'bg-container-task-dark' : 'bg-container-task'}w-full flex  items-center justify-between py-3 pl-4 pr-4 bg-transparent`}>
-            {/* <div className={DarkTheme ? 'w-full flex max-w-85  items-center justify-between  py-2 ml-4 mr-4 m-auto bg-container-task' : 'w-full flex  items-center justify-between py-2 pl-4 pr-4 bg-transparent'}> */}
-
-            {current === 'all' ? <><p className={`${DarkTheme ? 'text-gray-600' : 'text-text-light'}`}> All Items</p> </> : null}
-            {current === 'active' ? <><p className={`${DarkTheme ? 'text-gray-600' : 'text-text-light'}`}>{pendingTask.length} items left</p> </> : null}
-            {current === 'completed' ? <><p className={`${DarkTheme ? 'text-gray-600' : 'text-text-light'}`}>{tasksDone.length} items completed</p> </> : null}
-
-            <p className={`${DarkTheme ? 'text-gray-600' : 'text-text-light'}`} onClick={() => seTtask(task.filter(el => el.done !== true))}>Clear Completed</p>
-          </div>
-        </div>
-        <div className={DarkTheme ? 'w-full  max-w-85 flex mt-4 items-center justify-center py-3  m-auto bg-container-task-dark rounded-md' : 'w-full max-w-85 flex mt-4  py-2  items-center justify-center  m-auto bg-container-task rounded-md '}>
-          <p onClick={() => setcurrent('all')} className={`${current === 'all' ? 'text-blue-500' : 'text-text-light'} ${DarkTheme && current === 'all' && 'text-blue-500'}`}>All</p>
-          <p onClick={() => setcurrent('active')} className={`${current === 'active' ? 'text-blue-500' : 'text-text-light'} ${DarkTheme && current === 'active' && 'text-blue-500'} ml-4 mr-4`}>Active</p>
-          <p onClick={() => setcurrent('completed')} className={`${current === 'completed' ? 'text-blue-500' : 'text-text-light'} ${DarkTheme && current === 'completed' && 'text-blue-500'}`}>Completed</p>
-        </div>
+      <main className='absolute z-30 w-full -mt-6 mb-4 flex items-center flex-col h-auto m-auto  md:-mt-9'>
+        <ContainerTask modal={modal} task={task} setModal={setModal} current={current} setcurrent={setcurrent} pendingTask={pendingTask} tasksDone={tasksDone} seTtask={seTtask} filteredData={filteredData} updateTaskDone={updateTaskDone} handleAddTask={handleAddTask} handleDeleteTask={handleDeleteTask} />
       </main>
+      {modal && <Modal handleDeleteAll={handleDeleteAll} setModal={setModal} />}
       <footer className={DarkTheme ? 'relative z-10 fot bottom-0 bg-footer-background-dark' : 'relative z-10 fot bg-gray-100'} />
     </>
   )
