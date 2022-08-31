@@ -64,13 +64,13 @@ function App () {
   console.info(filteredData)
   return (
     <>
-      <header className={`${DarkTheme ? 'bg-dark-mobile lg:bg-dark-desktop' : 'bg-light-mobile lg:bg-light-desktop'} relative z-10 h-48 lg:h-24 bg-center bg-no-repeat bg-cover`} />
+      <header className={`${DarkTheme ? 'bg-dark-mobile md:bg-dark-desktop' : 'bg-light-mobile md:bg-light-desktop'} relative z-10 h-48 lg:h-24 bg-center bg-no-repeat bg-cover`} />
       <div className='absolute w-full top-8 left-0 right-0 z-10 m-auto flex flex-col items-center justify-between lg:top-[6rem]'>
         <Header />
         <CreateTask handleAddTask={handleAddTask} />
       </div>
       <main className='absolute z-30 w-full -mt-6 mb-4 flex items-center flex-col h-auto m-auto '>
-        <div className={`${DarkTheme ? 'bg-container-task-dark' : 'bg-container-task'} max-w-85 w-full rounded-md h-auto md:max-w-4xl`}>
+        <div className={`${DarkTheme ? 'bg-container-task-dark' : 'bg-container-task'} max-w-85 w-full rounded-md h-auto `}>
 
           {task.length > 0 ? filteredData.map(el => <List key={el.id} content={el.content} id={el.id} done={el.done} updateTaskDone={updateTaskDone} handleDeleteTask={handleDeleteTask} />) : <p className={`${DarkTheme ? 'text-text-dark' : 'text-text-light'} text-center my-4`}>No hay tareas</p>}
           <div className={`${DarkTheme ? 'bg-container-task-dark' : 'bg-container-task'}w-full flex  items-center justify-between py-3 pl-4 pr-4 bg-transparent`}>
@@ -83,7 +83,7 @@ function App () {
             <p className={`${DarkTheme ? 'text-gray-600' : 'text-text-light'}`} onClick={() => seTtask(task.filter(el => el.done !== true))}>Clear Completed</p>
           </div>
         </div>
-        <div className={DarkTheme ? 'w-full  max-w-85 flex mt-4 items-center justify-center py-3  m-auto bg-container-task-dark rounded-md' : 'w-full max-w-85 flex mt-4  py-2  items-center justify-center  m-auto bg-container-task rounded-md md:max-w-4xl'}>
+        <div className={DarkTheme ? 'w-full  max-w-85 flex mt-4 items-center justify-center py-3  m-auto bg-container-task-dark rounded-md' : 'w-full max-w-85 flex mt-4  py-2  items-center justify-center  m-auto bg-container-task rounded-md '}>
           <p onClick={() => setcurrent('all')} className={`${current === 'all' ? 'text-blue-500' : 'text-text-light'} ${DarkTheme && current === 'all' && 'text-blue-500'}`}>All</p>
           <p onClick={() => setcurrent('active')} className={`${current === 'active' ? 'text-blue-500' : 'text-text-light'} ${DarkTheme && current === 'active' && 'text-blue-500'} ml-4 mr-4`}>Active</p>
           <p onClick={() => setcurrent('completed')} className={`${current === 'completed' ? 'text-blue-500' : 'text-text-light'} ${DarkTheme && current === 'completed' && 'text-blue-500'}`}>Completed</p>
