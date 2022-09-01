@@ -2,8 +2,8 @@ import React from 'react'
 
 const Modal = ({ setModal, handleDeleteAll }) => {
   return (
-    <div className='fixed z-50 top-0 left-0 h-[100vh] w-full flex items-center justify-center bg-gray-500 opacity-60'>
-      <div className='absolute rounded-2xl flex flex-col items-center justify-center bg-white p-7 w-96 opacity-100'>
+    <div className='fixed z-50 top-0 left-0 h-[100vh] w-full flex items-center justify-center '>
+      <div className='absolute rounded-2xl flex flex-col items-center justify-center bg-white p-7 w-96 '>
         <h1 className='text-3xl font-bold'>Delete All Tasks</h1>
         <p>
           Are you sure you want to delete all taks? This will remove the

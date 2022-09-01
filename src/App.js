@@ -73,11 +73,12 @@ function App () {
         <Header />
         <CreateTask handleAddTask={handleAddTask} />
       </div>
-      <main className='absolute z-30 w-full -mt-6 mb-4 flex items-center flex-col h-auto m-auto  md:-mt-9'>
+      <main className={`${DarkTheme ? 'bg-footer-background-dark' : 'bg-gray-100'} absolute z-30 w-full  flex items-center flex-col h-auto m-auto  md:-mt-9`}>
         <ContainerTask modal={modal} task={task} setModal={setModal} current={current} setcurrent={setcurrent} pendingTask={pendingTask} tasksDone={tasksDone} seTtask={seTtask} filteredData={filteredData} updateTaskDone={updateTaskDone} handleAddTask={handleAddTask} handleDeleteTask={handleDeleteTask} />
       </main>
       {modal && <Modal handleDeleteAll={handleDeleteAll} setModal={setModal} />}
-      <footer className={DarkTheme ? 'relative z-10 fot bottom-0 bg-footer-background-dark' : 'relative z-10 fot bg-gray-100'} />
+      <footer className={`${DarkTheme ? 'bg-footer-background-dark' : 'bg-gray-100'} relative bottom-0 z-10 fot min-h-full`} />
+
     </>
   )
 }
