@@ -7,7 +7,7 @@
 
 ### Links
 
-- Solution URL: [https://www.frontendmentor.io/solutions/flags-challenge-with-react-aKQGkOCW8P](https://www.frontendmentor.io/solutions/flags-challenge-with-react-aKQGkOCW8P)
+- Solution URL: [https://www.frontendmentor.io/solutions/todo-list-with-react-tailwind-css-n7Rro5iMZ3](https://www.frontendmentor.io/solutions/todo-list-with-react-tailwind-css-n7Rro5iMZ3)
 - Live Site URL: [https://react-todo-list-challenge.netlify.app/](https://react-todo-list-challenge.netlify.app/)
 
 ```js
