@@ -8,7 +8,7 @@ const ContainerTask = ({ modal, task, current, setModal, setcurrent, filteredDat
     <>
       <div className={`${DarkTheme ? 'bg-container-task-dark' : 'bg-container-task'} max-w-85 w-full rounded-md h-auto -mt-7  md:max-w-2xl md:mb-8`}>
 
-        {task.length > 0 ? filteredData.map(el => <List key={el.id} content={el.content} id={el.id} done={el.done} updateTaskDone={updateTaskDone} handleDeleteTask={handleDeleteTask} />) : <p className={`${DarkTheme ? 'text-text-dark' : 'text-text-light'} text-center my-4`}>No hay tareas</p>}
+        {task.length > 0 ? filteredData.map(el => <List key={el.id} content={el.content} id={el.id} done={el.done} updateTaskDone={updateTaskDone} handleDeleteTask={handleDeleteTask} />) : <p className={`${DarkTheme ? 'text-text-dark' : 'text-text-light'} text-center my-4`}>Empty list...</p>}
         <div className={`${DarkTheme ? 'bg-container-task-dark' : 'bg-container-task'}w-full flex  items-center justify-between py-4 pl-4 pr-4 bg-transparent  md:py-5`}>
           {current === 'all' ? <><p className={`${DarkTheme ? 'text-gray-600' : 'text-text-light'} ${DarkTheme ? 'md:hover:text-gray-200' : 'md:hover:text-gray-800'} cursor-pointer text-sm`}> All Items</p> </> : null}
           {current === 'active' ? <><p className={`${DarkTheme ? 'text-gray-600' : 'text-text-light'} ${DarkTheme ? 'md:hover:text-gray-200' : 'md:hover:text-gray-800'} cursor-pointer text-sm`}>{pendingTask.length} items left</p> </> : null}
