@@ -73,7 +73,7 @@ function App () {
         <Header />
         <CreateTask handleAddTask={handleAddTask} />
       </div>
-      <main className={`${DarkTheme ? 'bg-footer-background-dark' : 'bg-gray-100'} absolute z-30 w-full  flex items-center flex-col h-auto m-auto  md:-mt-9`}>
+      <main className={`${DarkTheme ? 'bg-footer-background-dark' : 'bg-gray-100'} absolute z-30 w-full  flex items-center flex-col  m-auto  md:-mt-9 h-auto min-h-[80vh]`}>
         <ContainerTask modal={modal} task={task} setModal={setModal} current={current} setcurrent={setcurrent} pendingTask={pendingTask} tasksDone={tasksDone} seTtask={seTtask} filteredData={filteredData} updateTaskDone={updateTaskDone} handleAddTask={handleAddTask} handleDeleteTask={handleDeleteTask} />
       </main>
       {modal && <Modal handleDeleteAll={handleDeleteAll} setModal={setModal} />}
