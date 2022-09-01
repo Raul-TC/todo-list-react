@@ -20,10 +20,11 @@ showMessage();
 
 ### Built with
 
+- Create React App
 - React
+- React Context
 - Tailwind CSS
 - Local Storage
-- Create React App
 
 ## Author
 
